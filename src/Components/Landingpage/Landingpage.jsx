@@ -4,6 +4,13 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import MenuIcon from "@material-ui/icons/Menu";
+import Hidden from "@material-ui/core/Hidden";
+
+import ProductCard from "../Landingpage/ProductCard";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +38,13 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("sm")]: {
       fontSize: "14px"
     }
-  }
+  },
+  appbar: {
+    backgroundColor: "#FFFFFF",
+    color: "#000000",
+    boxShadow: "none"
+  },
+  toolbar: {}
 }));
 
 export default function LandingPage() {
@@ -39,53 +52,30 @@ export default function LandingPage() {
 
   return (
     <div className={classes.root}>
-      <Grid item xs={12} sm={4} md={4}>
-        <Grid container style={{}}>
-          <Grid item xs={12}>
-            {/* <Paper className={classes.paper}></Paper> */}
-            <Grid item xs={12}>
-              <div
-                style={{
-                  width: "100%",
-                  height: "300px",
-                  backgroundColor: "aquamarine"
-                }}
-              ></div>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container>
-                <Typography variant="body2">Nike airmax v2390</Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container>
-                <Typography variant="body1">NGN 30 000</Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container>
-                <Typography variant="caption">5 units (min. order)</Typography>
-              </Grid>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container>
-                <Button
-                  fullWidth
-                  variant="contained"
-                  className={classes.button}
-                  style={{
-                    backgroundColor: "#FF5C00",
-                    color: "white",
-                    fontSize: "14px"
-                  }}
-                >
-                  ADD TO CART
-                </Button>
-              </Grid>
+      <AppBar position="static" className={classes.appbar}>
+        <Toolbar className={classes.toolbar}>
+          <Grid item xs={3} sm={3} md={3}>
+            <Grid container alignItems="center">
+              <IconButton
+                edge="start"
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="menu"
+              >
+                <MenuIcon />
+              </IconButton>
+
+              <Typography variant="h6" className={classes.title}>
+                News
+              </Typography>
             </Grid>
           </Grid>
-        </Grid>
-      </Grid>
+          <Grid item xs={8} sm={8} md={8}></Grid>
+
+          <Button color="inherit">Login</Button>
+        </Toolbar>
+      </AppBar>
+      <ProductCard />
     </div>
   );
 }
