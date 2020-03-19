@@ -64,108 +64,29 @@ const useStyles = makeStyles(theme => ({
 export default function LandingPage() {
   const classes = useStyles();
 
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const handleOpen = () => {
-    setMobileOpen(!mobileOpen);
-    console.log(mobileOpen);
-  };
-
-  const drawer = (
-    <div>
-      <div className={classes.toolbar} />
-
-      <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
   return (
     <div className={classes.root}>
-      <AppBar position="static" className={classes.appbar}>
-        <Toolbar className={classes.toolbar}>
-          <Grid item xs={12} sm={3} md={3}>
-            <Grid container alignItems="center">
-              <IconButton
-                edge="start"
-                className={classes.menuButton}
-                onClick={handleOpen}
-                color="inherit"
-                aria-label="menu"
-              >
-                <MenuIcon />
-              </IconButton>
-
-              <Typography variant="h6" className={classes.title}>
-                News
-              </Typography>
-            </Grid>
-          </Grid>
-
-          <Hidden xsDown>
-            <Grid item xs={8} sm={8} md={8}>
-              <Button>Home</Button>
-              <Button>Home</Button>
-              <Button>Home</Button>
-            </Grid>
-          </Hidden>
-
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
-
-      <nav className={classes.drawer} aria-label="mailbox folders">
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
-          <Drawer
-            // container={container}
-            variant="temporary"
-            // anchor={theme.direction === "rtl" ? "right" : "left"}
-            open={mobileOpen}
-            onClose={handleOpen}
-            classes={{
-              paper: classes.drawerPaper
+      <Grid container>
+        <Grid item xs={12} sm={12} md={12}>
+          <div
+            style={{
+              width: "100%",
+              height: "400px",
+              backgroundColor: "#481380"
             }}
-            ModalProps={{
-              keepMounted: true // Better open performance on mobile.
-            }}
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
+          ></div>
+        </Grid>
 
-        <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper
+        <Grid item xs={12} sm={12} md={12}>
+          <div
+            style={{
+              width: "100%",
+              height: "400px",
+              backgroundColor: "#7f78d2"
             }}
-            variant="permanent"
-            open
-          >
-            {drawer}
-          </Drawer>
-        </Hidden>
-      </nav>
-      <ProductCard />
+          ></div>
+        </Grid>
+      </Grid>
     </div>
   );
 }
