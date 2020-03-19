@@ -92,6 +92,7 @@ function Home(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
+
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -108,6 +109,7 @@ function Home(props) {
           </Typography>
         </Toolbar>
       </AppBar>
+
       <nav className={classes.drawer} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Hidden smUp implementation="css">
@@ -127,6 +129,7 @@ function Home(props) {
             {drawer}
           </Drawer>
         </Hidden>
+
         <Hidden xsDown implementation="css">
           <Drawer
             classes={{
@@ -139,9 +142,10 @@ function Home(props) {
           </Drawer>
         </Hidden>
       </nav>
+
       <main className={classes.content}>
         <div className={classes.toolbar} />
-        
+
         <Typography paragraph>
           Consequat mauris nunc congue nisi vitae suscipit. Fringilla est
           ullamcorper eget nulla facilisi etiam dignissim diam. Pulvinar
