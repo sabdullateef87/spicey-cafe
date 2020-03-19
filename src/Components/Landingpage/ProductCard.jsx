@@ -9,10 +9,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  mainContainer:{
-    "@media screen and (max-width: 992px)" : {
-        padding:"10px"
-  },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -34,6 +30,11 @@ const useStyles = makeStyles(theme => ({
     color: "#fff",
     [theme.breakpoints.down("sm")]: {
       fontSize: "14px"
+    }
+  },
+  mainContainer: {
+    "@media screen and (max-width: 992px)": {
+      padding: "10px"
     }
   }
 }));
