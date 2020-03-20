@@ -68,7 +68,7 @@ export default function LandingPage() {
 
   return (
     <div className={classes.root}>
-      <Grid container>
+      <Grid container flexDirection="column">
         <Grid item xs={12} sm={12} md={12}>
           <SwipeableTextMobileStepper />
         </Grid>
@@ -77,18 +77,41 @@ export default function LandingPage() {
           <SliderOne />
         </Grid>
 
-        <Grid
-          item
-          xs={12}
-          sm={3}
-          md={3}
-          style={{
-            border: "1px solid rgba(0,0,0,0.05)",
-            padding: "10px",
-            borderRadius: "5px"
-          }}
-        >
-          {/* <ProductCard /> */}
+        <Grid item xs={12} sm={12} md={12}>
+          <h1>About Pane</h1>
+        </Grid>
+
+        <Grid item xs={12} sm={12} md={12}>
+          <h1>Our Services Pane</h1>
+        </Grid>
+
+        <Grid item xs={12} sm={12} md={12}>
+          <h1>Kitchen Pane</h1>
+        </Grid>
+
+        {/* <Grid item xs={12} sm={3} md={3}>
+          <h1>About Pane</h1>
+        </Grid>
+
+        <Grid item xs={12} sm={3} md={3}>
+          <h1>About Pane</h1>
+        </Grid>
+
+        <Grid item xs={12} sm={3} md={3}>
+          <h1>About Pane</h1>
+        </Grid> */}
+
+        <Grid item xs={12} sm={12} md={12}>
+          <div
+            style={{
+              width: "100%",
+              minHeight: "400px",
+              backgroundColor: "#584444",
+              color: "white"
+            }}
+          >
+            <h1>Footer</h1>
+          </div>
         </Grid>
       </Grid>
     </div>

@@ -18,6 +18,12 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
+import HomeIcon from "@material-ui/icons/Home";
+import KitchenIcon from "@material-ui/icons/Kitchen";
+import InfoIcon from "@material-ui/icons/Info";
+import ContactMailIcon from "@material-ui/icons/ContactMail";
+import WallpaperIcon from "@material-ui/icons/Wallpaper";
+import AnnouncementIcon from "@material-ui/icons/Announcement";
 
 import ProductCard from "../Landingpage/ProductCard";
 
@@ -62,7 +68,7 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     "& .MuiDrawer-paper": {
       width: "300px",
-      backgroundColor: "#efb1ff",
+      backgroundColor: "#4b1919",
       color: "white"
     }
   },
@@ -74,6 +80,9 @@ const useStyles = makeStyles(theme => ({
     "& :hover": {
       display: "block"
     }
+  },
+  icons:{
+    
   }
 }));
 
@@ -87,17 +96,42 @@ function Navbar() {
     console.log(mobileOpen);
   };
 
+  const navArray = [
+    {
+      name: "Home",
+      icon: <HomeIcon />
+    },
+    {
+      name: "Kitchen",
+      icon: <KitchenIcon />
+    },
+    {
+      name: "About Us",
+      icon: <InfoIcon />
+    },
+    {
+      name: "Contact Us",
+      icon: <ContactMailIcon />
+    },
+    {
+      name: "Gallery",
+      icon: <WallpaperIcon />
+    },
+    {
+      name: "News",
+      icon: <AnnouncementIcon />
+    }
+  ];
+
   const drawer = (
     <div>
       {/* <div className={classes.toolbar} /> */}
 
       <List>
-        {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
+        {navArray.map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon style={{ color: "white" }}>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
+            <ListItemIcon style={{ color: "whitesmoke" }}>{text.icon}</ListItemIcon>
+            <ListItemText primary={text.name} />
           </ListItem>
         ))}
       </List>
