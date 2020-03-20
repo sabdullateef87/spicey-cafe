@@ -95,6 +95,7 @@ function SwipeableTextMobileStepper() {
           </div>
         ))}
       </AutoPlaySwipeableViews>
+
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -112,6 +113,7 @@ function SwipeableTextMobileStepper() {
           </Button>
         }
       />
+      
     </div>
   );
 }

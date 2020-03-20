@@ -19,6 +19,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
 import SwipeableTextMobileStepper from "../Landingpage/Carousel";
+import SliderOne from "../Landingpage/SliderOne";
 
 import ProductCard from "../Landingpage/ProductCard";
 
@@ -72,6 +73,10 @@ export default function LandingPage() {
           <SwipeableTextMobileStepper />
         </Grid>
 
+        <Grid item xs={12} sm={12} md={12}>
+          <SliderOneg />
+        </Grid>
+
         <Grid
           item
           xs={12}
@@ -83,7 +88,7 @@ export default function LandingPage() {
             borderRadius: "5px"
           }}
         >
-          <ProductCard />
+          {/* <ProductCard /> */}
         </Grid>
       </Grid>
     </div>
