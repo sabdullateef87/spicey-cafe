@@ -18,6 +18,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
+import SwipeableTextMobileStepper from "../Landingpage/Carousel";
 
 import ProductCard from "../Landingpage/ProductCard";
 
@@ -68,18 +69,9 @@ export default function LandingPage() {
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12} sm={12} md={12}>
-          <div
-            style={{
-              width: "100%",
-              height: "400px",
-              backgroundColor: "#481380"
-            }}
-          >
-            
-          </div>
+          <SwipeableTextMobileStepper />
         </Grid>
 
-        
         <Grid
           item
           xs={12}
