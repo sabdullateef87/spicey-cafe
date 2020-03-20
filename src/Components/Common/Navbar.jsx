@@ -62,8 +62,17 @@ const useStyles = makeStyles(theme => ({
   drawer: {
     "& .MuiDrawer-paper": {
       width: "300px",
-      backgroundColor: "#7f78d2",
+      backgroundColor: "#efb1ff",
       color: "white"
+    }
+  },
+  title: {
+    fontFamily: "cursive"
+  },
+  login: {
+    transition: "ease-in-out 1s",
+    "& :hover": {
+      display: "block"
     }
   }
 }));
@@ -112,7 +121,7 @@ function Navbar() {
               </IconButton>
 
               <Typography variant="h6" className={classes.title}>
-                News
+                Spicey
               </Typography>
             </Grid>
           </Grid>
@@ -125,7 +134,13 @@ function Navbar() {
             </Grid>
           </Hidden>
 
-          <Button color="inherit">Login</Button>
+          <Button
+            color="inherit"
+            style={{ fontSize: "10px" }}
+            className={classes.login}
+          >
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
 

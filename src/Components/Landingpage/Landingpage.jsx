@@ -74,7 +74,7 @@ export default function LandingPage() {
         </Grid>
 
         <Grid item xs={12} sm={12} md={12}>
-          <SliderOneg />
+          <SliderOne />
         </Grid>
 
         <Grid
