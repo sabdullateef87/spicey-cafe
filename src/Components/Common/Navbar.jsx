@@ -61,7 +61,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     "& .MuiDrawer-paper": {
-      width: "230px",
+      width: "300px",
       backgroundColor: "#7f78d2",
       color: "white"
     }
