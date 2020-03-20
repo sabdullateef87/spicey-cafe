@@ -4,6 +4,10 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
+import LocationOnIcon from "@material-ui/icons/LocationOn";
+import Logo from "../Icons/download.jpg"
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,27 +54,82 @@ function ProductCard() {
             <div
               style={{
                 width: "100%",
-                height: "300px",
+                height: "210px",
                 backgroundColor: "aquamarine"
               }}
-            ></div>
+            >
+              <img src={Logo} alt="background" width="100%" height="100%" />
+            </div>
           </Grid>
-          <Grid item xs={12} style={{ padding: "10px 0 0 0" }}>
+          <Grid item xs={12} style={{ padding: "15px 0 15px 0" }}>
             <Grid container>
-              <Typography variant="body2">Nike airmax v2390</Typography>
+              <Typography
+                variant="body2"
+                style={{
+                  fontSize: "15px",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                  color:"rgba(0,0,0,0.7)"
+                }}
+              >
+                Nike airmax
+                v2390uuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu
+              </Typography>
             </Grid>
           </Grid>
-          <Grid item xs={12} style={{ padding: "10px 0 0 0" }}>
-            <Grid container>
-              <Typography variant="body1">NGN 30 000</Typography>
+
+          <Grid item xs={12} style={{ padding: "0 0 8px 0" }}>
+            <Grid container alignItems="center" style={{ color: "#FF5C00" }}>
+              <LocationOnIcon style={{ fontSize: "11px" }} />
+              <Typography variant="body1" style={{ fontSize: "11px" }}>
+                {" "}
+                University of ilorin
+              </Typography>
             </Grid>
           </Grid>
-          <Grid item xs={12} style={{ padding: "10px 0 0 0" }}>
+
+          <Grid item xs={12} style={{ padding: "0 0 8px 0" }}>
             <Grid container>
-              <Typography variant="caption">5 units (min. order)</Typography>
+              <StarBorderIcon
+                style={{ fontSize: "10px", color: "rgba(0,0,0,0.5)" }}
+              />
+              <StarBorderIcon
+                style={{ fontSize: "10px", color: "rgba(0,0,0,0.5)" }}
+              />
+              <StarBorderIcon
+                style={{ fontSize: "10px", color: "rgba(0,0,0,0.5)" }}
+              />
+              <StarBorderIcon
+                style={{ fontSize: "10px", color: "rgba(0,0,0,0.5)" }}
+              />
+              <StarBorderIcon
+                style={{ fontSize: "10px", color: "rgba(0,0,0,0.5)" }}
+              />
+
+              <Typography variant="body1"></Typography>
             </Grid>
           </Grid>
-          <Grid item xs={12} style={{ padding: "10px 0 0 0" }}>
+
+          <Grid item xs={12} style={{ padding: "0 0 8px 0" }}>
+            <Grid container alignItems="center">
+              <Typography
+                variant="caption"
+                style={{
+                  padding: "0 10px 0 0",
+                  color: "rgba(0,0,0,0.4)",
+                  fontSize: "12px"
+                }}
+              >
+                From
+              </Typography>
+              <Typography variant="h5" style={{ fontSize: "18px" }}>
+                &#8358;30000
+              </Typography>
+            </Grid>
+          </Grid>
+
+          <Grid item xs={12} style={{ padding: "0 0 8px 0" }}>
             <Grid container>
               <Button
                 fullWidth

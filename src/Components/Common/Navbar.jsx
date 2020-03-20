@@ -58,6 +58,13 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       display: "none"
     }
+  },
+  drawer: {
+    "& .MuiDrawer-paper": {
+      width: "230px",
+      backgroundColor: "#7f78d2",
+      color: "white"
+    }
   }
 }));
 
@@ -73,23 +80,12 @@ function Navbar() {
 
   const drawer = (
     <div>
-      <div className={classes.toolbar} />
+      {/* <div className={classes.toolbar} /> */}
 
       <List>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
           <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-
-      <List>
-        {["All mail", "Trash", "Spam"].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
+            <ListItemIcon style={{ color: "white" }}>
               {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
             </ListItemIcon>
             <ListItemText primary={text} />
@@ -138,6 +134,8 @@ function Navbar() {
         <Hidden smUp implementation="css">
           <Drawer
             // container={container}
+            className={classes.drawer}
+            style={{ color: "white" }}
             variant="temporary"
             // anchor={theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}

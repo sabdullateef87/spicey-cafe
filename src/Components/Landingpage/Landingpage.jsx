@@ -67,7 +67,7 @@ export default function LandingPage() {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={12} sm={12} md={12}>
+        {/* <Grid item xs={12} sm={12} md={12}>
           <div
             style={{
               width: "100%",
@@ -85,6 +85,19 @@ export default function LandingPage() {
               backgroundColor: "#7f78d2"
             }}
           ></div>
+        </Grid> */}
+        <Grid
+          item
+          xs={12}
+          sm={3}
+          md={3}
+          style={{
+            border: "1px solid rgba(0,0,0,0.05)",
+            padding: "10px",
+            borderRadius: "5px"
+          }}
+        >
+          <ProductCard />
         </Grid>
       </Grid>
     </div>
