@@ -60,6 +60,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up("sm")]: {
       display: "none"
     }
+  },
+  subContains: {
+    padding: "30px 0px"
   }
 }));
 
@@ -73,20 +76,76 @@ export default function LandingPage() {
           <SwipeableTextMobileStepper />
         </Grid>
 
-        <Grid item xs={12} sm={12} md={12}>
+        {/* <Grid item xs={12} sm={12} md={12}>
           <SliderOne />
+        </Grid> */}
+
+        <Grid item xs={12} sm={12} md={12} className={classes.subContains}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Typography variant="h5"> Quick Recipes</Typography>
+            <hr style={{ margin: "0px" }} />
+            <div
+              style={{
+                width: "100%",
+                height: "300px",
+                backgroundColor: "aquamarine"
+              }}
+            ></div>
+          </Grid>
         </Grid>
 
-        <Grid item xs={12} sm={12} md={12}>
-          <h1>About Pane</h1>
-        </Grid>
+        {/* <Grid item xs={12} sm={12} md={12} className={classes.subContains}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Typography variant="h5"> Gallery </Typography>
+            <hr style={{ margin: "0px" }} />
+            <div
+              style={{
+                width: "100%",
+                height: "300px",
+                backgroundColor: "aquamarine"
+              }}
+            ></div>
+          </Grid>
+        </Grid> */}
 
-        <Grid item xs={12} sm={12} md={12}>
-          <h1>Our Services Pane</h1>
+        <Grid item xs={12} sm={12} md={12} className={classes.subContains}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Typography variant="h5"> Spicey Learn</Typography>
+            <hr style={{ margin: "0px" }} />
+            <div
+              style={{
+                width: "100%",
+                height: "300px",
+                backgroundColor: "aquamarine"
+              }}
+            ></div>
+          </Grid>
         </Grid>
-
-        <Grid item xs={12} sm={12} md={12}>
-          <h1>Kitchen Pane</h1>
+        <Grid item xs={12} sm={12} md={12} className={classes.subContains}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Typography variant="h5"> Our services</Typography>
+            <hr style={{ margin: "0px" }} />
+            <div
+              style={{
+                width: "100%",
+                height: "300px",
+                backgroundColor: "aquamarine"
+              }}
+            ></div>
+          </Grid>
+        </Grid>
+        <Grid item xs={12} sm={12} md={12} className={classes.subContains}>
+          <Grid item xs={12} sm={12} md={12}>
+            <Typography variant="h5"> Contact Us</Typography>
+            <hr style={{ margin: "0px" }} />
+            <div
+              style={{
+                width: "100%",
+                height: "300px",
+                backgroundColor: "aquamarine"
+              }}
+            ></div>
+          </Grid>
         </Grid>
 
         {/* <Grid item xs={12} sm={3} md={3}>
