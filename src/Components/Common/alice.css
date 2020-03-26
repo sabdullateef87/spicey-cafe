@@ -1,0 +1,11 @@
+.alice-carousel__dots-item:hover,
+.alice-carousel__dots-item.__active {
+  background-color: #ff5c00;
+}
+
+.alice-carousel__dots {
+  margin: 0px;
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}

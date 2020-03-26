@@ -13,11 +13,12 @@ import icon4 from "../Icons/UnlimitedSupport.svg";
 import icon3 from "../Icons/Training.svg";
 import vasitiLogo from "../Icons/Vasiti-Logo-black 1.png";
 import whatYourShouldKnowIcon from "../Icons/what-you-icon.svg";
-import jetImage from "../Icons/jetimage.svg";
+import jetImage from "../Icons/rocket-image.png";
 import bg from "../Icons/apply-here-background.svg";
 
 import AliceCarousel from "react-alice-carousel";
 import "react-alice-carousel/lib/alice-carousel.css";
+import "../Common/alice.css";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,7 +37,10 @@ const useStyles = makeStyles(theme => ({
   header: {
     boxShadow: "none",
     height: "80px",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0px 0px 0px 10px"
+    }
     //padding: "0 0 0 10px"
   },
   benefit: {
@@ -147,7 +151,20 @@ const useStyles = makeStyles(theme => ({
       width: "150px !important"
     }
   },
-  aliceCarousel: {}
+  aliceCarousel: {},
+  jetImageContain: {
+    [theme.breakpoints.down("xs")]: {
+      padding: "40px 0px !important"
+    }
+  },
+  jetImage: {
+    [theme.breakpoints.down("sm")]: {
+      width: "165px !important",
+      padding: "0 0 24px 0",
+      position: "inherit !important",
+      top: "0 !important"
+    }
+  }
 }));
 
 export default function LandingPage2() {
@@ -689,7 +706,10 @@ export default function LandingPage2() {
                   </Hidden>
                 </Grid>
               </Grid>
-              <Grid style={{ padding: "64px 0px" }}>
+              <Grid
+                style={{ padding: "75px 0px" }}
+                className={classes.jetImageContain}
+              >
                 <Grid
                   item
                   xs={12}
@@ -706,7 +726,7 @@ export default function LandingPage2() {
                   }}
                 >
                   <Grid container>
-                    <Grid item xs={12} sm={12} md={8}>
+                    <Grid item xs={12} sm={7} md={7}>
                       <Grid container>
                         <Grid item xs={12} sm={12} md={12}>
                           <Typography
@@ -739,13 +759,13 @@ export default function LandingPage2() {
                       </Grid>
                     </Grid>
                     <Hidden xsDown>
-                      <Grid item xs={12} sm={12} md={3}>
+                      <Grid item xs={12} sm={4} md={4}>
                         <div style={{ width: "100%", height: "200px" }}>
                           <img
                             src={jetImage}
                             alt="jet"
-                            width="100%"
-                            height="100%"
+                            style={{ position: "relative", top: "-80px" }}
+                            className={classes.jetImage}
                           />
                         </div>
                       </Grid>
