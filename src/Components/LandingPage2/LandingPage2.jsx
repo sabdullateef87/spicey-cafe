@@ -187,7 +187,7 @@ export default function LandingPage2() {
               <Grid container alignItems="center">
                 <img
                   src={vasitiLogo}
-                  alt="the best platform for students"
+                  alt="the best platform for students !!!!"
                   className={classes.vasitiLogo}
                 />
               </Grid>
