@@ -2,13 +2,17 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
+import Button from "@material-ui/core/Button";
 import Banner from "../LandingPage2/Icons/Vasiti Seller Landing Page Banner 5.svg";
 import icon1 from "../Icons/MoreMoney.svg";
 import icon2 from "../Icons/ExclusiveAccess.svg";
 import icon4 from "../Icons/UnlimitedSupport.svg";
 import icon3 from "../Icons/Training.svg";
 import whatYourShouldKnowIcon from "../Icons/what-you-icon.svg";
+import jetImage from "../Icons/jetimage.svg";
+import bg from "../Icons/apply-here-background.svg";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -94,7 +98,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: "bold",
     fontSize: "18px",
     [theme.breakpoints.down("xs")]: {
-      fontSize: "14px"
+      fontSize: "14px !important"
     }
   },
   bottomInfo: {
@@ -112,12 +116,23 @@ const useStyles = makeStyles(theme => ({
   },
   whatYourShouldKnowIcon: {
     [theme.breakpoints.down("xs")]: {
-      paddingTop: "20px"
+      //paddingTop: "20px"
     }
   },
   whatYourShouldKnowImage: {
+    [theme.breakpoints.down("sm")]: {
+      width: "120px !important",
+      padding: "0 0 24px 0"
+    }
+  },
+  whatYouShouldKnow: {
     [theme.breakpoints.down("xs")]: {
-      width: "120px !important"
+      flexFlow: "column-reverse"
+    }
+  },
+  applyNow: {
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px !important"
     }
   }
 }));
@@ -130,7 +145,7 @@ export default function LandingPage2() {
       <Grid container>
         {/* header section */}
         <Grid item xs={12} sm={12} md={12}>
-          <Grid container className={classes.header}>
+          <Grid container className={classes.header} alignItems="center">
             <Typography variant="h5">Logo</Typography>
           </Grid>
         </Grid>
@@ -554,6 +569,7 @@ export default function LandingPage2() {
                     borderRadius: "10px",
                     padding: "30px 10px"
                   }}
+                  className={classes.whatYouShouldKnow}
                 >
                   <Grid item xs={12} sm={7} md={7}>
                     <Grid container style={{ textAlign: "left" }}>
@@ -605,9 +621,87 @@ export default function LandingPage2() {
                   </Grid>
                 </Grid>
               </Grid>
+              <Grid style={{ padding: "64px 0px" }}>
+                <Grid
+                  item
+                  xs={12}
+                  sm={12}
+                  md={12}
+                  style={{
+                    backgroundImage: `url(${bg})`,
+                    //height: "240px",
+                    backgroundPosition: "center",
+                    backgroundRepeat: "no-repeat",
+                    backgroundSize: "cover",
+                    borderRadius: "10px",
+                    padding: "40px 0 40px 30px"
+                  }}
+                >
+                  <Grid container>
+                    <Grid item xs={12} sm={12} md={8}>
+                      <Grid container>
+                        <Grid item xs={12} sm={12} md={12}>
+                          <Typography
+                            style={{
+                              color: "white",
+                              fontSize: "24px",
+                              textAlign: "left",
+                              padding: "0px 0 20px 0"
+                            }}
+                            className={classes.topInfo}
+                          >
+                            Are you truly passionate about making money on
+                            campus and growing your business?
+                          </Typography>
+                          <Button
+                            variant="contained"
+                            style={{
+                              display: "flex",
+                              backgroundColor: "white",
+                              boxShadow: "none",
+                              color: "#FF5C01",
+                              fontWeight: "bold",
+                              fontSize: "17px"
+                            }}
+                            className={classes.applyNow}
+                          >
+                            SIGN UP NOW
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </Grid>
+                    <Hidden xsDown>
+                      <Grid item xs={12} sm={12} md={3}>
+                        <div style={{ width: "100%", height: "200px" }}>
+                          <img
+                            src={jetImage}
+                            alt="jet"
+                            width="100%"
+                            height="100%"
+                          />
+                        </div>
+                      </Grid>
+                    </Hidden>
+                  </Grid>
+                </Grid>
+              </Grid>
             </Grid>
 
             {/* ////////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+          </Grid>
+          <Grid item xs={12} sm={12} sm={12}>
+            <Grid
+              container
+              style={{
+                backgroundColor: "#3f3f3f",
+                height: "321px",
+                color: "White"
+              }}
+              justify="center"
+              alignItems="center"
+            >
+              <Typography variant="h5">Footer</Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>
