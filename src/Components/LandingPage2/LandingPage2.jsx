@@ -8,7 +8,7 @@ import icon1 from "../Icons/MoreMoney.svg";
 import icon2 from "../Icons/ExclusiveAccess.svg";
 import icon4 from "../Icons/UnlimitedSupport.svg";
 import icon3 from "../Icons/Training.svg";
-
+import whatYourShouldKnowIcon from "../Icons/what-you-icon.svg";
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -108,6 +108,16 @@ const useStyles = makeStyles(theme => ({
   contents: {
     [theme.breakpoints.down("xs")]: {
       padding: "0 12px"
+    }
+  },
+  whatYourShouldKnowIcon: {
+    [theme.breakpoints.down("xs")]: {
+      paddingTop: "20px"
+    }
+  },
+  whatYourShouldKnowImage: {
+    [theme.breakpoints.down("xs")]: {
+      width: "120px !important"
     }
   }
 }));
@@ -526,11 +536,73 @@ export default function LandingPage2() {
                   </Grid>
                 </Grid>
               </Grid>
+
               <Grid item xs={12} sm={12} md={12}>
                 <Grid container className={classes.whyHeader}>
                   <Typography variant="h5" className={classes.benefit}>
                     What You Should Know
                   </Typography>
+                </Grid>
+              </Grid>
+
+              <Grid item xs={12} sm={12} md={12}>
+                <Grid
+                  container
+                  justify="space-around"
+                  style={{
+                    backgroundColor: "#FBEAE2",
+                    borderRadius: "10px",
+                    padding: "30px 10px"
+                  }}
+                >
+                  <Grid item xs={12} sm={7} md={7}>
+                    <Grid container style={{ textAlign: "left" }}>
+                      <Grid item xs={12}>
+                        <Typography className={classes.topInfo}>
+                          We Want Happy Customers
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography className={classes.bottomInfo}>
+                          We want our buyers to be very happy so we expect you
+                          to sell only authentic products, upload exact images
+                          and use an accurate description
+                        </Typography>
+                      </Grid>
+                    </Grid>
+
+                    <Grid
+                      container
+                      style={{ textAlign: "left", paddingTop: "20px" }}
+                    >
+                      <Grid item xs={12}>
+                        <Typography className={classes.topInfo}>
+                          We Offer Super-Fast Delivery
+                        </Typography>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Typography className={classes.bottomInfo}>
+                          Please ensure products are available on standby before
+                          you upload to the site so it can quickly be picked up
+                          and delivered.
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                  </Grid>
+
+                  <Grid
+                    item
+                    xs={12}
+                    sm={4}
+                    md={4}
+                    className={classes.whatYourShouldKnowIcon}
+                  >
+                    <img
+                      src={whatYourShouldKnowIcon}
+                      className={classes.whatYourShouldKnowImage}
+                      alt="what you shouldd know"
+                    />
+                  </Grid>
                 </Grid>
               </Grid>
             </Grid>
