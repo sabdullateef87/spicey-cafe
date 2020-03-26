@@ -6,6 +6,7 @@ import Hidden from "@material-ui/core/Hidden";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import Banner from "../LandingPage2/Icons/Vasiti Seller Landing Page Banner 5.svg";
+import Banner2 from "../Icons/Vasiti Seller Landing Page Banner 02 2.svg";
 import icon1 from "../Icons/MoreMoney.svg";
 import icon2 from "../Icons/ExclusiveAccess.svg";
 import icon4 from "../Icons/UnlimitedSupport.svg";
@@ -14,6 +15,10 @@ import vasitiLogo from "../Icons/Vasiti-Logo-black 1.png";
 import whatYourShouldKnowIcon from "../Icons/what-you-icon.svg";
 import jetImage from "../Icons/jetimage.svg";
 import bg from "../Icons/apply-here-background.svg";
+
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
+
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -141,11 +146,19 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("xs")]: {
       width: "150px !important"
     }
+  },
+  aliceCarousel:{
+  
   }
 }));
 
+
+
 export default function LandingPage2() {
   const classes = useStyles();
+  const handleOnDragStart = e => {
+    e.preventDefault();
+  };
 
   return (
     <div className={classes.root}>
@@ -164,9 +177,31 @@ export default function LandingPage2() {
         <Grid container justify="space-around" style={{ paddingTop: "20px" }}>
           <Grid item xs={12} sm={8} md={8}>
             <Grid item xs={12} sm={12} md={12}>
-              <div style={{ width: "100%" }}>
-                <img src={Banner} alt="banner" width="100%" />
-              </div>
+              <AliceCarousel
+                mouseTrackingEnabled
+                fadeOutAnimation="true"
+                autoPlay="true"
+                duration={2500}
+                buttonsDisabled="true"
+                className={classes.aliceCarousel}
+              >
+                <div style={{ width: "100%" }}>
+                  <img
+                    src={Banner}
+                    alt="banner"
+                    width="100%"
+                    onDragStart={handleOnDragStart}
+                  />
+                </div>
+                <div style={{ width: "100%" }}>
+                  <img
+                    src={Banner2}
+                    alt="banner"
+                    width="100%"
+                    onDragStart={handleOnDragStart}
+                  />
+                </div>
+              </AliceCarousel>
             </Grid>
 
             <Grid className={classes.contents}>
