@@ -605,20 +605,21 @@ export default function LandingPage2() {
                       </Grid>
                     </Grid>
                   </Grid>
-
-                  <Grid
-                    item
-                    xs={12}
-                    sm={4}
-                    md={4}
-                    className={classes.whatYourShouldKnowIcon}
-                  >
-                    <img
-                      src={whatYourShouldKnowIcon}
-                      className={classes.whatYourShouldKnowImage}
-                      alt="what you shouldd know"
-                    />
-                  </Grid>
+                  <Hidden xsDown>
+                    <Grid
+                      item
+                      xs={12}
+                      sm={4}
+                      md={4}
+                      className={classes.whatYourShouldKnowIcon}
+                    >
+                      <img
+                        src={whatYourShouldKnowIcon}
+                        className={classes.whatYourShouldKnowImage}
+                        alt="what you shouldd know"
+                      />
+                    </Grid>
+                  </Hidden>
                 </Grid>
               </Grid>
               <Grid style={{ padding: "64px 0px" }}>
@@ -650,8 +651,8 @@ export default function LandingPage2() {
                             }}
                             className={classes.topInfo}
                           >
-                            Are you truly passionate about making money on
-                            campus and growing your business?
+                            Are you truly passionate about making money <br />
+                            on campus and growing your business?
                           </Typography>
                           <Button
                             variant="contained"
