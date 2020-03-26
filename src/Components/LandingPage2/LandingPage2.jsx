@@ -36,8 +36,8 @@ const useStyles = makeStyles(theme => ({
   header: {
     boxShadow: "none",
     height: "80px",
-    backgroundColor: "white",
-    padding: "0 0 0 10px"
+    backgroundColor: "white"
+    //padding: "0 0 0 10px"
   },
   benefit: {
     fontWeight: "bold",
@@ -147,12 +147,8 @@ const useStyles = makeStyles(theme => ({
       width: "150px !important"
     }
   },
-  aliceCarousel:{
-  
-  }
+  aliceCarousel: {}
 }));
-
-
 
 export default function LandingPage2() {
   const classes = useStyles();
@@ -164,13 +160,38 @@ export default function LandingPage2() {
     <div className={classes.root}>
       <Grid container>
         {/* header section */}
-        <Grid item xs={12} sm={12} md={12}>
-          <Grid container className={classes.header} alignItems="center">
-            <img
-              src={vasitiLogo}
-              alt="the best platform for students"
-              className={classes.vasitiLogo}
-            />
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          className={classes.header}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          {/* <Grid
+            container
+            className={classes.header}
+            // alignItems="center"
+          >
+            <Grid item xs={12} sm={12} md={12}>
+              <img
+                src={vasitiLogo}
+                alt="the best platform for students"
+                className={classes.vasitiLogo}
+              />
+            </Grid>
+          </Grid> */}
+          <Grid container>
+            <Grid item xs={2} sm={2} md={2}></Grid>
+            <Grid item xs={12} sm={10} md={10}>
+              <Grid container alignItems="center">
+                <img
+                  src={vasitiLogo}
+                  alt="the best platform for students"
+                  className={classes.vasitiLogo}
+                />
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
 
@@ -179,10 +200,10 @@ export default function LandingPage2() {
             <Grid item xs={12} sm={12} md={12}>
               <AliceCarousel
                 mouseTrackingEnabled
-                fadeOutAnimation="true"
-                autoPlay="true"
+                fadeOutAnimation={true}
+                autoPlay={true}
                 duration={2500}
-                buttonsDisabled="true"
+                buttonsDisabled={true}
                 className={classes.aliceCarousel}
               >
                 <div style={{ width: "100%" }}>
