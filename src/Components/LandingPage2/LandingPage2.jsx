@@ -10,6 +10,7 @@ import icon1 from "../Icons/MoreMoney.svg";
 import icon2 from "../Icons/ExclusiveAccess.svg";
 import icon4 from "../Icons/UnlimitedSupport.svg";
 import icon3 from "../Icons/Training.svg";
+import vasitiLogo from "../Icons/Vasiti-Logo-black 1.png";
 import whatYourShouldKnowIcon from "../Icons/what-you-icon.svg";
 import jetImage from "../Icons/jetimage.svg";
 import bg from "../Icons/apply-here-background.svg";
@@ -30,7 +31,8 @@ const useStyles = makeStyles(theme => ({
   header: {
     boxShadow: "none",
     height: "80px",
-    backgroundColor: "white"
+    backgroundColor: "white",
+    padding: "0 0 0 10px"
   },
   benefit: {
     fontWeight: "bold",
@@ -134,6 +136,11 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down("xs")]: {
       fontSize: "14px !important"
     }
+  },
+  vasitiLogo: {
+    [theme.breakpoints.down("xs")]: {
+      width: "150px !important"
+    }
   }
 }));
 
@@ -146,7 +153,11 @@ export default function LandingPage2() {
         {/* header section */}
         <Grid item xs={12} sm={12} md={12}>
           <Grid container className={classes.header} alignItems="center">
-            <Typography variant="h5">Logo</Typography>
+            <img
+              src={vasitiLogo}
+              alt="the best platform for students"
+              className={classes.vasitiLogo}
+            />
           </Grid>
         </Grid>
 
