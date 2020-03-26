@@ -722,7 +722,7 @@ export default function LandingPage2() {
                     backgroundRepeat: "no-repeat",
                     backgroundSize: "cover",
                     borderRadius: "10px",
-                    padding: "40px 0 40px 30px"
+                    padding: "40px 0 6px 30px"
                   }}
                 >
                   <Grid container>
