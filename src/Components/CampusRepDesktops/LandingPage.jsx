@@ -17,6 +17,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
 import FiberManualRecordIcon from "@material-ui/icons/FiberManualRecord";
 import noLookFurther from "../imagesAndIcons/look-no-further-road-sign 4.svg";
+import vasitiLogo from "./Vasiti-Logo-black 1.png";
 
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 const useStyles = makeStyles(theme => ({
@@ -85,6 +86,20 @@ const useStyles = makeStyles(theme => ({
   },
   listItemAvatar: {
     minWidth: "25px"
+  },
+  vasitiLogo: {
+    [theme.breakpoints.down("xs")]: {
+      width: "150px !important"
+    }
+  },
+  header: {
+    boxShadow: "none",
+    height: "80px",
+    backgroundColor: "white",
+    [theme.breakpoints.down("sm")]: {
+      padding: "0px 0px 0px 10px"
+    }
+    //padding: "0 0 0 10px"
   }
 }));
 
@@ -96,8 +111,40 @@ function LandingPage() {
   return (
     <>
       <Grid container>
-        <Grid item xs={12} sm={12} md={12}>
-          <Paper className={classes.topPane}></Paper>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          className={classes.header}
+          style={{ display: "flex", alignItems: "center" }}
+        >
+          {/* <Grid
+            container
+            className={classes.header}
+            // alignItems="center"
+          >
+            <Grid item xs={12} sm={12} md={12}>
+              <img
+                src={vasitiLogo}
+                alt="the best platform for students"
+                className={classes.vasitiLogo}
+              />
+            </Grid>
+          </Grid> */}
+
+          <Grid container>
+            <Grid item xs={2} sm={2} md={2}></Grid>
+            <Grid item xs={12} sm={10} md={10}>
+              <Grid container alignItems="center">
+                <img
+                  src={vasitiLogo}
+                  alt="the best platform for students !!!!"
+                  className={classes.vasitiLogo}
+                />
+              </Grid>
+            </Grid>
+          </Grid>
         </Grid>
         <Grid
           container
@@ -169,7 +216,7 @@ function LandingPage() {
                 xs={12}
                 sm={12}
                 md={12}
-                style={{ padding: "30px 0px 20px 0px" }}
+                style={{ padding: "30px 0px 20px 0px", display: "flex" }}
               >
                 <Typography
                   variant="h5"
@@ -303,7 +350,13 @@ function LandingPage() {
                 style={{ paddingBottom: "41px" }}
               >
                 <Grid container>
-                  <Grid item xs={12} sm={12} md={12}>
+                  <Grid
+                    item
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    style={{ display: "flex" }}
+                  >
                     <Typography
                       variant="h5"
                       style={{
@@ -315,17 +368,64 @@ function LandingPage() {
                       Skills and Competencies Needed
                     </Typography>
                   </Grid>
-                  <Grid item xs={12} sm={6} md={6}></Grid>
+
                   <Grid item xs={12} sm={6} md={6}>
-                    <Typography variant="caption">
-                      Great selling skills with a passion for sales Attention to
-                      details with ability to multitask. Result-oriented and
-                      innovative. Hardworking, energetic and highly organized
-                      team player Excellent communication skills with an ability
-                      to influence others. Innovative, Creative and Social media
-                      savvy Result-oriented, able to work under pressure, meet
-                      deadlines and influence others.
-                    </Typography>
+                    <List className={classes.root}>
+                      <ListItem>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Great selling skills with a passion for sales
+                      </ListItem>
+
+                      <ListItem>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Attention to details with ability to multitask.
+                      </ListItem>
+
+                      <ListItem className={classes.listItemAvatar}>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Result-oriented and innovative.
+                      </ListItem>
+                      <ListItem className={classes.listItemAvatar}>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Hardworking, energetic and highly organized team player
+                      </ListItem>
+                    </List>
+                  </Grid>
+
+                  <Grid item xs={12} sm={6} md={6}>
+                    <List className={classes.root}>
+                      <ListItem>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Excellent communication skills with an ability to <br />
+                        influence others.
+                      </ListItem>
+
+                      <ListItem>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Innovative, Creative and Social media savvy
+                      </ListItem>
+
+                      <ListItem className={classes.listItemAvatar}>
+                        <ListItemAvatar className={classes.listItemAvatar}>
+                          <FiberManualRecordIcon className={classes.icon} />
+                        </ListItemAvatar>
+                        Result-oriented, able to work under pressure, meet{" "}
+                        <br />
+                        deadlines and influence others.
+                      </ListItem>
+                    </List>
                   </Grid>
                 </Grid>
               </Grid>
@@ -345,7 +445,7 @@ function LandingPage() {
                 }}
               >
                 <Grid container>
-                  <Grid item xs={6} sm={6} md={6}>
+                  <Grid item xs={12} sm={6} md={6}>
                     <Typography
                       variant="h5"
                       style={{
@@ -371,17 +471,19 @@ function LandingPage() {
                       APPLY HERE
                     </Button>
                   </Grid>
-                  <Grid
-                    item
-                    xs={6}
-                    sm={6}
-                    md={6}
-                    style={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <div>
-                      <img src={noLookFurther} alt="No look further road" />
-                    </div>
-                  </Grid>
+                  <Hidden xsDown>
+                    <Grid
+                      item
+                      xs={6}
+                      sm={6}
+                      md={6}
+                      style={{ display: "flex", justifyContent: "center" }}
+                    >
+                      <div>
+                        <img src={noLookFurther} alt="No look further road" />
+                      </div>
+                    </Grid>
+                  </Hidden>
                 </Grid>
               </Grid>
             </Grid>

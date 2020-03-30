@@ -198,6 +198,8 @@ export default function LandingPage2() {
               />
             </Grid>
           </Grid> */}
+
+
           <Grid container>
             <Grid item xs={2} sm={2} md={2}></Grid>
             <Grid item xs={12} sm={10} md={10}>
@@ -211,6 +213,8 @@ export default function LandingPage2() {
             </Grid>
           </Grid>
         </Grid>
+
+        
 
         <Grid container justify="space-around" style={{ paddingTop: "20px" }}>
           <Grid item xs={12} sm={8} md={8}>
