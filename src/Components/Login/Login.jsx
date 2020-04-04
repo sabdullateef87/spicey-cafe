@@ -104,6 +104,7 @@ export default function Login() {
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        paddingTop: "60px",
       }}
     >
       <Grid>
