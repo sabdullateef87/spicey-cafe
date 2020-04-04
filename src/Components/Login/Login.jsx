@@ -5,7 +5,8 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
+// import Link from "@material-ui/core/Link";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -36,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: "#40c2f3",
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -54,6 +55,13 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "5px",
     "& .MuiInputBase-root": {
       border: "1px solid #40c2f3",
+    },
+  },
+  forgotPassword: {
+    [theme.breakpoints.down("xs")]: {
+      display: "flex",
+      justifyContent: "center !important",
+      alignItems: "center !important",
     },
   },
 }));
@@ -159,22 +167,41 @@ export default function Login() {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
-                  <Link href="#" variant="body2">
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  md={6}
+                  style={{ display: "flex" }}
+                  className={classes.forgotPassword}
+                >
+                  <Link
+                    to="#"
+                    variant="caption"
+                    style={{
+                      color: "rgba(0,0,0,0.4)",
+                      textAlign: "left",
+                      textDecoration: "none",
+                    }}
+                  >
                     Forgot password?
                   </Link>
                 </Grid>
-                <Grid item>
-                  <Link href="#" variant="body2">
+                <Grid item xs={12} sm={6} md={6}>
+                  <Link
+                    to="/signup"
+                    variant="caption"
+                    style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none" }}
+                  >
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>
               </Grid>
             </form>
           </div>
-          <Box mt={8}>
+          {/* <Box mt={4}>
             <Copyright />
-          </Box>
+          </Box> */}
         </Container>
       </Grid>
     </div>
