@@ -163,7 +163,8 @@ function LandingPage() {
                     backgroundPosition: "center",
                     backgroundSize: "cover",
                     height: "400px",
-                    marginBottom: "20px"
+                    marginBottom: "20px",
+                    
                   }}
                 ></div>
               </Grid>
