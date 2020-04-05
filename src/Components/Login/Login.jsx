@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -14,6 +14,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
+import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import bgm from "../Icons/DesktopBg.png";
 function Copyright() {
   return (
@@ -44,7 +46,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
     color: "white",
     backgroundColor: "#40c2f3",
     boxShadow: "none",
@@ -53,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     minWidth: "100%",
     backgroundColor: "#FAFAFA",
     borderRadius: "5px",
+
     "& .MuiInputBase-root": {
       border: "1px solid #40c2f3",
     },
@@ -62,6 +64,11 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center !important",
       alignItems: "center !important",
+    },
+  },
+  eyeIcon: {
+    [theme.breakpoints.down("xs")]: {
+      right: "-110px !important",
     },
   },
 }));
@@ -103,7 +110,17 @@ const CssTextField = withStyles({
 
 export default function Login() {
   const classes = useStyles();
+  const [eyeClick, setEyeClick] = useState(true);
+  console.log(eyeClick);
 
+  const onEyeClick = (e) => {
+    e.preventDefault();
+    setEyeClick(true);
+  };
+  const onEyeClickClose = (e) => {
+    e.preventDefault();
+    setEyeClick(false);
+  };
   return (
     <div
       style={{
@@ -150,14 +167,37 @@ export default function Login() {
                 fullWidth
                 name="password"
                 placeholder="Password"
-                type="password"
+                type={eyeClick ? "password" : "text"}
                 id="password"
                 autoComplete="current-password"
               />
-              {/* <FormControlLabel
-            control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
-          /> */}
+
+              {eyeClick ? (
+                <VisibilityOutlinedIcon
+                  className={classes.eyeIcon}
+                  style={{
+                    color: "rgba(0,0,0,0.4)",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "-40px",
+                    right: "-150px",
+                  }}
+                  onClick={onEyeClickClose}
+                />
+              ) : (
+                <VisibilityOffOutlinedIcon
+                  className={classes.eyeIcon}
+                  style={{
+                    color: "rgba(0,0,0,0.4)",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "-40px",
+                    right: "-150px",
+                  }}
+                  onClick={onEyeClick}
+                />
+              )}
+
               <Button
                 type="submit"
                 fullWidth
@@ -166,7 +206,7 @@ export default function Login() {
               >
                 Sign In
               </Button>
-              <Grid container>
+              <Grid container style={{ paddingTop: "20px" }}>
                 <Grid
                   item
                   xs={12}
