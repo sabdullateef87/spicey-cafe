@@ -17,6 +17,7 @@ import { withStyles } from "@material-ui/core/styles";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import bgm from "../Icons/DesktopBg.png";
+import mobileBg from "../Icons/mBgm.png";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -74,6 +75,17 @@ const useStyles = makeStyles((theme) => ({
       right: "-170px !important",
     },
   },
+  maiContainer: {
+    backgroundImage: `url(${bgm})`,
+    height: "100vh",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    paddingTop: "100px",
+    [theme.breakpoints.down("xs")]: {
+      backgroundImage: `url(${mobileBg}) !important`,
+    },
+  },
 }));
 
 const CssTextField = withStyles({
@@ -125,16 +137,7 @@ export default function Login() {
     setEyeClick(false);
   };
   return (
-    <div
-      style={{
-        backgroundImage: `url(${bgm})`,
-        height: "100vh",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        paddingTop: "60px",
-      }}
-    >
+    <div className={classes.maiContainer}>
       <Grid>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
