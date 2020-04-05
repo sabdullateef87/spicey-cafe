@@ -67,8 +67,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   eyeIcon: {
-    [theme.breakpoints.down("xs")]: {
-      right: "-110px !important",
+    "@media screen and (max-width: 416px) and (min-width: 0px)": {
+      right: "-125px !important",
+    },
+    "@media screen and (max-width: 600px) and (min-width: 416px)": {
+      right: "-170px !important",
     },
   },
 }));
@@ -180,7 +183,7 @@ export default function Login() {
                     cursor: "pointer",
                     position: "relative",
                     top: "-40px",
-                    right: "-150px",
+                    right: "-170px",
                   }}
                   onClick={onEyeClickClose}
                 />
@@ -192,7 +195,7 @@ export default function Login() {
                     cursor: "pointer",
                     position: "relative",
                     top: "-40px",
-                    right: "-150px",
+                    right: "-170px",
                   }}
                   onClick={onEyeClick}
                 />
