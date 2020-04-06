@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundSize: "cover",
     backgroundPosition: "center",
-    paddingTop: "100px",
+    paddingTop: "50px",
     [theme.breakpoints.down("xs")]: {
       backgroundImage: `url(${mobileBg}) !important`,
     },
