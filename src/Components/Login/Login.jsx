@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
+import FormControl from "@material-ui/core/FormControl";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 // import Link from "@material-ui/core/Link";
@@ -14,8 +16,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { withStyles } from "@material-ui/core/styles";
-import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
-import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import validateLogin from "./ValidateLogin";
 import bgm from "../Icons/DesktopBg.png";
 import mobileBg from "../Icons/mBgm.png";
 function Copyright() {
@@ -47,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
+    marginTop: theme.spacing(2),
     color: "white",
     backgroundColor: "#40c2f3",
     boxShadow: "none",
@@ -84,6 +90,32 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "100px",
     [theme.breakpoints.down("xs")]: {
       backgroundImage: `url(${mobileBg}) !important`,
+    },
+  },
+  passwordField: {
+    border: "1px solid #40c2f3",
+    backgroundColor: "#FAFAFA",
+    borderRadius: "5px",
+    width: "100%",
+    "& label.Mui-focused": {
+      color: "grey",
+      fontSize: 10,
+    },
+    "& ::placeholder": { fontSize: "14px" },
+    "&:hover": {
+      borderColor: "#40c2f3",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        border: "none",
+        opacity: "60%",
+      },
+      "&:hover fieldset": {
+        borderColor: "#40c2f3",
+      },
+      "&.Mui-focused fieldset": {
+        border: "1px solid #40c2f3",
+      },
     },
   },
 }));
@@ -124,18 +156,50 @@ const CssTextField = withStyles({
 })(TextField);
 
 export default function Login() {
-  const classes = useStyles();
-  const [eyeClick, setEyeClick] = useState(true);
-  console.log(eyeClick);
+  const USER_INFO = {
+    email: "",
+    password: "",
+  };
 
-  const onEyeClick = (e) => {
-    e.preventDefault();
-    setEyeClick(true);
+  const [values, setValues] = useState(USER_INFO);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [validationError, setValidationError] = useState({
+    email: "",
+    password: "",
+  });
+  useEffect(() => {
+    if (isSubmitted) {
+      const noErrors = Object.keys(validationError).length === 0;
+      if (noErrors) {
+        setIsSubmitted(true);
+        console.log(values);
+      } else {
+        setIsSubmitted(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [validationError]);
+
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
   };
-  const onEyeClickClose = (e) => {
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setEyeClick(false);
+    const validationError = validateLogin(values);
+    setValidationError(validationError);
+    setIsSubmitted(true);
+    console.log(isSubmitted);
+    console.log(validationError);
   };
+
+  const classes = useStyles();
+  const [showPassword, setShowPassword] = useState(false);
+  const onClickPasswordIcon = (e) => {
+    e.preventDefault();
+    setShowPassword(!showPassword);
+  };
+
   return (
     <div className={classes.maiContainer}>
       <Grid>
@@ -148,7 +212,7 @@ export default function Login() {
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <CssTextField
                 className={classes.textfield}
                 size="small"
@@ -159,49 +223,61 @@ export default function Login() {
                 id="email"
                 name="email"
                 margin="normal"
-                // value={values.email}
-                // onChange={handleChange}
+                value={values.email}
+                onChange={handleChange}
                 autoComplete="email"
                 autoFocus
               />
-              <CssTextField
-                className={classes.textfield}
-                margin="normal"
-                size="small"
+              {validationError.email && (
+                <Grid
+                  item
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    fontSize: "10px",
+                    color: "red",
+                    opacity: "0.7",
+                  }}
+                >
+                  {validationError.email}
+                </Grid>
+              )}
+              <FormControl
+                className={classes.passwordField}
                 variant="outlined"
-                required
-                fullWidth
-                name="password"
-                placeholder="Password"
-                type={eyeClick ? "password" : "text"}
-                id="password"
-                autoComplete="current-password"
-              />
-
-              {eyeClick ? (
-                <VisibilityOutlinedIcon
-                  className={classes.eyeIcon}
-                  style={{
-                    color: "rgba(0,0,0,0.4)",
-                    cursor: "pointer",
-                    position: "relative",
-                    top: "-40px",
-                    right: "-170px",
-                  }}
-                  onClick={onEyeClickClose}
+                size="small"
+                margin="normal"
+              >
+                <OutlinedInput
+                  placeholder="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                  autoComplete="current-password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton onClick={onClickPasswordIcon}>
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                 />
-              ) : (
-                <VisibilityOffOutlinedIcon
-                  className={classes.eyeIcon}
+              </FormControl>
+              {validationError.password && (
+                <Grid
+                  item
+                  xs={12}
                   style={{
-                    color: "rgba(0,0,0,0.4)",
-                    cursor: "pointer",
-                    position: "relative",
-                    top: "-40px",
-                    right: "-170px",
+                    display: "flex",
+                    
+                    fontSize: "10px",
+                    color: "red",
+                    opacity: "0.7",
                   }}
-                  onClick={onEyeClick}
-                />
+                >
+                  {validationError.password}
+                </Grid>
               )}
 
               <Button
