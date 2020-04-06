@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,10 +11,16 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
+import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import bgm from "../Icons/DesktopBg.png";
+import mobileBg from "../Icons/mBgm.png";
+
+import useSignupHook from "../Signup/useSignupHook";
+import validateSignUp from "./ValidateSignUp";
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
-import bgm from "../Icons/DesktopBg.png";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -44,7 +50,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
     color: "white",
     backgroundColor: "#40c2f3",
     boxShadow: "none",
@@ -62,6 +67,25 @@ const useStyles = makeStyles((theme) => ({
       display: "flex",
       justifyContent: "center !important",
       alignItems: "center !important",
+    },
+  },
+  eyeIcon: {
+    "@media screen and (max-width: 416px) and (min-width: 0px)": {
+      right: "-125px !important",
+    },
+    "@media screen and (max-width: 600px) and (min-width: 416px)": {
+      right: "-170px !important",
+    },
+  },
+  maiContainer: {
+    backgroundImage: `url(${bgm})`,
+    height: "100vh",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    paddingTop: "100px",
+    [theme.breakpoints.down("xs")]: {
+      backgroundImage: `url(${mobileBg}) !important`,
     },
   },
 }));
@@ -102,19 +126,70 @@ const CssTextField = withStyles({
 })(TextField);
 
 export default function SignUp() {
+  const USER_INFO = {
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  };
+
+  const [values, setValues] = useState(USER_INFO);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [validationError, setValidationError] = useState({
+    firstname: "",
+    lastname: "",
+    email: "",
+    password: "",
+  });
+
+  // useEffect(() => {
+  //   if (Object.keys(validationError) !== 0) {
+  //     setIsSubmitted(false);
+  //   } else {
+  //     setIsSubmitted(true);
+  //   }
+  // }, [validationError]);
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const noErrors = Object.keys(validationError).length === 0;
+      if (noErrors) {
+        setIsSubmitted(true);
+        console.log(values);
+      } else {
+        setIsSubmitted(false);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [validationError]);
+
+  const handleChange = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationError = validateSignUp(values);
+    setValidationError(validationError);
+    setIsSubmitted(true);
+    console.log(isSubmitted);
+    console.log(validationError);
+  };
+
   const classes = useStyles();
+  const [eyeClick, setEyeClick] = useState(true);
+
+  const onEyeClick = (e) => {
+    e.preventDefault();
+    setEyeClick(true);
+  };
+  const onEyeClickClose = (e) => {
+    e.preventDefault();
+    setEyeClick(false);
+  };
 
   return (
-    <div
-      style={{
-        backgroundImage: `url(${bgm})`,
-        height: "100vh",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        paddingTop: "60px",
-      }}
-    >
+    <div className={classes.maiContainer}>
       <Grid>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -125,7 +200,7 @@ export default function SignUp() {
             <Typography component="h1" variant="h5">
               Sign Up
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} noValidate onSubmit={handleSubmit}>
               <CssTextField
                 className={classes.textfield}
                 size="small"
@@ -133,14 +208,28 @@ export default function SignUp() {
                 placeholder="Firstname"
                 required
                 fullWidth
-                id="email"
-                name="email"
+                id="firstname"
+                name="firstname"
                 margin="normal"
-                // value={values.email}
-                // onChange={handleChange}
-                autoComplete="email"
+                value={values.firstname}
+                onChange={handleChange}
+                autoComplete="firstname"
                 autoFocus
               />
+              {validationError.firstname && (
+                <Grid
+                  item
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    fontSize: "10px",
+                    color: "red",
+                    opacity: "0.7",
+                  }}
+                >
+                  {validationError.firstname}
+                </Grid>
+              )}
               <CssTextField
                 className={classes.textfield}
                 size="small"
@@ -148,20 +237,36 @@ export default function SignUp() {
                 placeholder="Lastname"
                 required
                 fullWidth
-                id="email"
-                name="email"
+                id="lastname"
+                name="lastname"
                 margin="normal"
-                // value={values.email}
-                // onChange={handleChange}
-                autoComplete="email"
+                value={values.lastname}
+                onChange={handleChange}
+                autoComplete="lastname"
                 autoFocus
               />
+              {validationError.lastname && (
+                <Grid
+                  item
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    fontSize: "10px",
+                    color: "red",
+                    opacity: "0.7",
+                  }}
+                >
+                  {validationError.lastname}
+                </Grid>
+              )}
               <CssTextField
                 className={classes.textfield}
                 size="small"
                 variant="outlined"
                 placeholder="Enter your email"
                 required
+                value={values.email}
+                onChange={handleChange}
                 fullWidth
                 id="email"
                 name="email"
@@ -169,6 +274,20 @@ export default function SignUp() {
                 autoComplete="email"
                 autoFocus
               />
+              {validationError.email && (
+                <Grid
+                  item
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    fontSize: "10px",
+                    color: "red",
+                    opacity: "0.7",
+                  }}
+                >
+                  {validationError.email}
+                </Grid>
+              )}
               <CssTextField
                 className={classes.textfield}
                 margin="normal"
@@ -176,45 +295,76 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={values.password}
+                onChange={handleChange}
                 name="password"
                 placeholder="Password"
-                type="password"
+                type={eyeClick ? "password" : "text"}
                 id="password"
                 autoComplete="current-password"
               />
+              {validationError.password && (
+                <Grid
+                  item
+                  xs={12}
+                  style={{
+                    display: "flex",
+                    fontSize: "10px",
+                    color: "red",
+                    opacity: "0.7",
+                  }}
+                >
+                  {validationError.password}
+                </Grid>
+              )}
+
+              {eyeClick ? (
+                <VisibilityOutlinedIcon
+                  className={classes.eyeIcon}
+                  style={{
+                    color: "rgba(0,0,0,0.4)",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "-40px",
+                    right: "-170px",
+                  }}
+                  onClick={onEyeClickClose}
+                />
+              ) : (
+                <VisibilityOffOutlinedIcon
+                  className={classes.eyeIcon}
+                  style={{
+                    color: "rgba(0,0,0,0.4)",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "-40px",
+                    right: "-170px",
+                  }}
+                  onClick={onEyeClick}
+                />
+              )}
+              {/* {validationError.password && (
+                <Grid>{validationError.password}</Grid>
+              )} */}
 
               <Button
                 type="submit"
                 fullWidth
                 variant="contained"
                 className={classes.submit}
+                // disabled={isSubmitted}
               >
                 Sign In
               </Button>
               <Grid container>
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  md={6}
-                  style={{ display: "flex" }}
-                  className={classes.forgotPassword}
-                >
-                  {/* <Link
-                    href="#"
-                    variant="caption"
-                    style={{ color: "rgba(0,0,0,0.4)", textAlign: "left" }}
-                  >
-                    Forgot password?
-                  </Link> */}
-                </Grid>
-                <Grid item item xs={12} sm={6} md={6} mt={3}>
+                <Grid item item xs={12} sm={12} md={12} mt={3}>
                   <Link
                     to="/login"
                     style={{
                       color: "rgba(0,0,0,0.4)",
                       textAlign: "left",
                       textDecoration: "none",
+                      fontSize: "12px",
                     }}
                   >
                     {"Already have an account? Sign In"}

@@ -16,14 +16,14 @@ function Index() {
         <Route path="/campusrep">
           <CampusRepLandingPage />
         </Route>
-        <Route path="/login">
-          <Login />
-        </Route>
         <Route path="/signup">
           <SignUp />
         </Route>
-        <Route path="/">
+        <Route path="/seller">
           <LandingPage2 />
+        </Route>
+        <Route path="/">
+          <Login />
         </Route>
         {/* <Route path="/">
           <LandingPage />

@@ -212,7 +212,7 @@ export default function Login() {
               >
                 Sign In
               </Button>
-              <Grid container style={{ paddingTop: "20px" }}>
+              <Grid container style={{ paddingTop: "10px" }}>
                 <Grid
                   item
                   xs={12}
@@ -228,6 +228,7 @@ export default function Login() {
                       color: "rgba(0,0,0,0.4)",
                       textAlign: "left",
                       textDecoration: "none",
+                      fontSize: "12px",
                     }}
                   >
                     Forgot password?
@@ -237,7 +238,11 @@ export default function Login() {
                   <Link
                     to="/signup"
                     variant="caption"
-                    style={{ color: "rgba(0,0,0,0.4)", textDecoration: "none" }}
+                    style={{
+                      color: "rgba(0,0,0,0.4)",
+                      textDecoration: "none",
+                      fontSize: "12px",
+                    }}
                   >
                     {"Don't have an account? Sign Up"}
                   </Link>
