@@ -4,13 +4,21 @@ import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
+import FormControl from "@material-ui/core/FormControl";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import Checkbox from "@material-ui/core/Checkbox";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
+import InputLabel from "@material-ui/core/InputLabel";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import IconButton from "@material-ui/core/IconButton";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Input from "@material-ui/core/Input";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
 import bgm from "../Icons/DesktopBg.png";
@@ -50,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
   submit: {
+    marginTop: theme.spacing(2),
     color: "white",
     backgroundColor: "#40c2f3",
     boxShadow: "none",
@@ -86,6 +95,32 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: "100px",
     [theme.breakpoints.down("xs")]: {
       backgroundImage: `url(${mobileBg}) !important`,
+    },
+  },
+  passwordField: {
+    border: "1px solid #40c2f3",
+    backgroundColor: "#FAFAFA",
+    borderRadius: "5px",
+    width: "100%",
+    "& label.Mui-focused": {
+      color: "grey",
+      fontSize: 10,
+    },
+    "& ::placeholder": { fontSize: "14px" },
+    "&:hover": {
+      borderColor: "#40c2f3",
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        border: "none",
+        opacity: "60%",
+      },
+      "&:hover fieldset": {
+        borderColor: "#40c2f3",
+      },
+      "&.Mui-focused fieldset": {
+        border: "1px solid #40c2f3",
+      },
     },
   },
 }));
@@ -141,14 +176,7 @@ export default function SignUp() {
     email: "",
     password: "",
   });
-
-  // useEffect(() => {
-  //   if (Object.keys(validationError) !== 0) {
-  //     setIsSubmitted(false);
-  //   } else {
-  //     setIsSubmitted(true);
-  //   }
-  // }, [validationError]);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (isSubmitted) {
@@ -177,15 +205,10 @@ export default function SignUp() {
   };
 
   const classes = useStyles();
-  const [eyeClick, setEyeClick] = useState(true);
 
-  const onEyeClick = (e) => {
+  const onClickPasswordIcon = (e) => {
     e.preventDefault();
-    setEyeClick(true);
-  };
-  const onEyeClickClose = (e) => {
-    e.preventDefault();
-    setEyeClick(false);
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -288,21 +311,28 @@ export default function SignUp() {
                   {validationError.email}
                 </Grid>
               )}
-              <CssTextField
-                className={classes.textfield}
-                margin="normal"
-                size="small"
+              <FormControl
+                className={classes.passwordField}
                 variant="outlined"
-                required
-                fullWidth
-                value={values.password}
-                onChange={handleChange}
-                name="password"
-                placeholder="Password"
-                type={eyeClick ? "password" : "text"}
-                id="password"
-                autoComplete="current-password"
-              />
+                size="small"
+                margin="normal"
+              >
+                <OutlinedInput
+                  placeholder="Password"
+                  value={values.password}
+                  onChange={handleChange}
+                  autoComplete="current-password"
+                  name="password"
+                  type={showPassword ? "text" : "password"}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton onClick={onClickPasswordIcon}>
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                />
+              </FormControl>
               {validationError.password && (
                 <Grid
                   item
@@ -317,35 +347,6 @@ export default function SignUp() {
                   {validationError.password}
                 </Grid>
               )}
-
-              {eyeClick ? (
-                <VisibilityOutlinedIcon
-                  className={classes.eyeIcon}
-                  style={{
-                    color: "rgba(0,0,0,0.4)",
-                    cursor: "pointer",
-                    position: "relative",
-                    top: "-40px",
-                    right: "-170px",
-                  }}
-                  onClick={onEyeClickClose}
-                />
-              ) : (
-                <VisibilityOffOutlinedIcon
-                  className={classes.eyeIcon}
-                  style={{
-                    color: "rgba(0,0,0,0.4)",
-                    cursor: "pointer",
-                    position: "relative",
-                    top: "-40px",
-                    right: "-170px",
-                  }}
-                  onClick={onEyeClick}
-                />
-              )}
-              {/* {validationError.password && (
-                <Grid>{validationError.password}</Grid>
-              )} */}
 
               <Button
                 type="submit"
