@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -177,22 +178,39 @@ export default function SignUp() {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
     if (isSubmitted) {
       const noErrors = Object.keys(validationError).length === 0;
       if (noErrors) {
         setIsSubmitted(true);
-        console.log(values);
+        console.log(isSubmitted);
+        axios
+          .post("http://localhost:4000/user/register", values)
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       } else {
         setIsSubmitted(false);
       }
+      setIsSubmitted(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [validationError]);
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
+    if (e.target.name === "password") {
+      if (e.target.value.length < 6) {
+        setActive(true);
+      } else {
+        setActive(false);
+      }
+    }
   };
 
   const handleSubmit = (e) => {
@@ -201,7 +219,7 @@ export default function SignUp() {
     setValidationError(validationError);
     setIsSubmitted(true);
     console.log(isSubmitted);
-    console.log(validationError);
+    // console.log(validationError);
   };
 
   const classes = useStyles();
@@ -353,10 +371,11 @@ export default function SignUp() {
                 fullWidth
                 variant="contained"
                 className={classes.submit}
-                // disabled={isSubmitted}
+                disabled={active}
               >
                 Sign In
               </Button>
+
               <Grid container>
                 <Grid item item xs={12} sm={12} md={12} mt={3}>
                   <Link
