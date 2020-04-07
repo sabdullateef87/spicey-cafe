@@ -360,6 +360,7 @@ export default function SignUp() {
                     fontSize: "10px",
                     color: "red",
                     opacity: "0.7",
+                    textAlign: "left",
                   }}
                 >
                   {validationError.password}

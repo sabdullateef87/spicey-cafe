@@ -28,7 +28,8 @@ const validateSignUp = (values) => {
   if (!values.password) {
     errors.password = "This field id required";
   } else if (!passwordRegex.test(values.password)) {
-    errors.password = "Must contain a number and greater than 6";
+    errors.password =
+      "Must contain a number, special character, capital letter and greater than 6";
   }
 
   return errors;
