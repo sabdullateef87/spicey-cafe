@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -17,18 +17,34 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import IconButton from "@material-ui/core/IconButton";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
 import Input from "@material-ui/core/Input";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import CloseIcon from "@material-ui/icons/Close";
 import VisibilityOffOutlinedIcon from "@material-ui/icons/VisibilityOffOutlined";
 import VisibilityOutlinedIcon from "@material-ui/icons/VisibilityOutlined";
+import SuccessNotification from "./SuccessNotification";
+import FailureNotification from "./FailureNotification";
 import bgm from "../Icons/DesktopBg.png";
 import mobileBg from "../Icons/mBgm.png";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect,
+  useHistory,
+  useLocation,
+} from "react-router-dom";
 
 import useSignupHook from "../Signup/useSignupHook";
 import validateSignUp from "./ValidateSignUp";
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 function Copyright() {
   return (
@@ -170,56 +186,54 @@ export default function SignUp() {
   };
 
   const [values, setValues] = useState(USER_INFO);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [validationError, setValidationError] = useState({
     firstname: "",
     lastname: "",
     email: "",
     password: "",
   });
-  const [showPassword, setShowPassword] = useState(false);
-  const [active, setActive] = useState(true);
 
-  useEffect(() => {
-    if (isSubmitted) {
-      const noErrors = Object.keys(validationError).length === 0;
-      if (noErrors) {
-        setIsSubmitted(true);
-        console.log(isSubmitted);
-        axios
-          .post("http://localhost:4000/user/register", values)
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      } else {
-        setIsSubmitted(false);
-      }
-      setIsSubmitted(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [validationError]);
+  const [showPassword, setShowPassword] = useState(false);
+  const [data, setData] = useState({
+    meassage: "",
+    error: "",
+  });
+
+  const [open, setOpen] = React.useState(false);
+
+  let history = useHistory();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
-    if (e.target.name === "password") {
-      if (e.target.value.length < 6) {
-        setActive(true);
-      } else {
-        setActive(false);
-      }
-    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationError = validateSignUp(values);
     setValidationError(validationError);
-    setIsSubmitted(true);
-    console.log(isSubmitted);
-    // console.log(validationError);
+    if (Object.keys(validationError).length === 0) {
+      axios
+        .post("http://localhost:4000/user/register", values)
+        .then((response) => {
+          console.log(response.data.message, response.data.error);
+          setData({
+            ...data,
+            message: response.data.message,
+            error: response.data.status,
+          });
+          setOpen(true);
+        })
+
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (Object.keys(validationError).length !== 0) {
+      console.log("Error still persist");
+    }
   };
 
   const classes = useStyles();
@@ -372,7 +386,6 @@ export default function SignUp() {
                 fullWidth
                 variant="contained"
                 className={classes.submit}
-                disabled={active}
               >
                 Sign In
               </Button>
@@ -394,9 +407,64 @@ export default function SignUp() {
               </Grid>
             </form>
           </div>
-          {/* <Box mt={8}>
-            <Copyright />
-          </Box> */}
+
+          {data.error === "Failed" ? (
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+              fullWidth
+            >
+              <Grid container justify="flex-end">
+                <CloseIcon
+                  onClick={handleClose}
+                  style={{ color: "black" }}
+                ></CloseIcon>
+              </Grid>
+              <DialogContent>
+                <FailureNotification />
+              </DialogContent>
+              <DialogActions>
+                <Grid container justify="flex-end">
+                  <Button
+                    variant="contained"
+                    style={{ color: "white", backgroundColor: "#40c2f3" }}
+                  >
+                    Proceed to login
+                  </Button>
+                </Grid>
+              </DialogActions>
+            </Dialog>
+          ) : (
+            <Dialog
+              open={open}
+              onClose={handleClose}
+              aria-labelledby="alert-dialog-title"
+              aria-describedby="alert-dialog-description"
+              fullWidth
+            >
+              <Grid container justify="flex-end">
+                <CloseIcon
+                  onClick={handleClose}
+                  style={{ color: "black" }}
+                ></CloseIcon>
+              </Grid>
+              <DialogContent>
+                <SuccessNotification />
+              </DialogContent>
+              <DialogActions>
+                <Grid container justify="flex-end">
+                  <Button
+                    variant="contained"
+                    style={{ color: "white", backgroundColor: "#40c2f3" }}
+                  >
+                    Proceed to login
+                  </Button>
+                </Grid>
+              </DialogActions>
+            </Dialog>
+          )}
         </Container>
       </Grid>
     </div>
